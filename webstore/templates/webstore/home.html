@@ -1,0 +1,49 @@
+{% extends "webstore/base.html" %}
+{% load static %}
+
+
+
+{%block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+</head>
+
+    <section class="home-background"><img src="{% static 'images/Lawn-Mower.jpg' %}" alt=""></section>
+    
+    <section class="about-us" id="about-us">
+        
+        <div class="about-header"><h2>Welcome to Lush Lawns  Mowing Parts!</h2>
+            <h3>Let us tell you little about ourselves.</h3>
+            <hr>
+            <p class="about-msg">It all started when a group of guys who wanted to make some money while in college took a class together. All the guys cut lawns as kids to make a little money, 
+                and we decided to open a small business that sells lawnmower parts and accessories for the most common lawnmowers in our area.
+                We felt like something was still missing within our business. We decided to implement a website for our small business. This website will allow customers to purchase parts via the web.
+            </p>
+        </div>
+
+        <div class="about-info">
+            <div class="info-img-text">
+                <img src="{% static 'images/about-img1.jpg'%}" alt="Lawnmower">
+                <p>We have a large stock of lawnmower parts for the most common lawnmowers within our area. Our customers can choose based on the brands they love.</p>
+            </div>
+
+            <div class="info-img-text">
+                <img src="{% static 'images/about-img2.jpg'%}" alt="Lawnmower">
+                <p> We love to people people parts for their lawnmower so, they can care for their lawn.
+                    Lawn care is often overlooked or underestimated, but maintaining a well-kept lawn offers numerous benefits.
+                    A healthy lawn not only enhances the curb appeal of your property but also provides a welcoming environment.
+                </p>
+            </div>
+        </div>
+
+    </section>
+    
+    <section class="brand-options-header"><h3>Shop By Brand</h3></section>
+    
+    <section class="brand-options">
+        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
+        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
+        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
+        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
+    </section>
+{% endblock content %}
