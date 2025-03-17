@@ -64,9 +64,10 @@
 }
 
 .model-item-img {
-    width: 95%;
-    height: 95%;
+    width: 93%;
+    height: 93%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .model-info {
