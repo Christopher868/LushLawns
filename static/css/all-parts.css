@@ -34,7 +34,7 @@
     margin: 30px 0px;
     color: #4f772d;
     font-weight: bolder;
-    font-size: 2rem;
+    font-size: clamp(20px, 4vw, 32px);
 }
 
 /* Stylings for models portion of all-models page */
