@@ -41,9 +41,17 @@
     <section class="brand-options-header"><h3>Shop By Brand</h3></section>
     
     <section class="brand-options">
-        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
-        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
-        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
-        <div class="brand"><a href="#"><img src="{% static 'images/about-img2.jpg'%}" alt=""></a></div>
+        {% for brand in brand  %}
+            {% if brand %}
+                <div class="brand"><a href="{% url 'models' brand.name %}">
+                    {% if brand.image %}
+                        <img src="{{ brand.image.url }}" alt="Logo for {{ brand.name }} brand">
+                    {% else %}
+                        <img src="{% static 'images/Brand-Logo-Alt.png' %}" alt="Logo for {{ brand.name }} brand">
+                    {% endif %}
+                    <h3>{{ brand.name }}</h3>
+                </a></div>
+            {% endif %}    
+        {% endfor %}
     </section>
 {% endblock content %}

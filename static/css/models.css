@@ -1,0 +1,117 @@
+.base-main {
+    width: 100%;
+}
+
+
+/* Stylings for top of all Model page */
+.models-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px;
+    text-align: center;
+    align-items: center;
+}
+
+.models-top a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.models-top a:hover {
+    box-shadow: 0px 0px 2px black;
+}
+
+.models-top a:active {
+    box-shadow: inset 0px 0px 2px black;
+}
+
+.models-header {
+    text-align: center;
+    margin: 30px 0px;
+    color: #4f772d;
+    font-weight: bolder;
+    font-size: clamp(20px, 4vw, 32px);
+}
+
+.models-search {
+    max-width: 800px;
+}
+
+/* Stylings for models portion of all-models page */
+
+.models {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin: 150px auto 100px auto;
+
+    justify-items: center;
+    align-items: center;
+    width: 85%;
+    row-gap: 100px;
+
+}
+
+.model-item {
+    height: 600px;
+    width: 400px;
+    display: grid;
+    grid-template-rows: 300px 1fr;
+    justify-items: center;
+    align-items: center;
+    background-color: #4f772d;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+}
+
+.model-item-img {
+    width: 93%;
+    height: 93%;
+    object-fit: cover;
+    border-radius: 10px;
+
+}
+
+.model-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: auto 0;
+    row-gap: 30px;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.model-info p {
+    text-align: center;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.model-info-header {
+    font-weight: bolder;
+}
+
+.model-info button {
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bolder;
+}
+
+.model-info a {
+    text-decoration: none;
+    color: black;
+}
+
+.model-info button:hover {
+    box-shadow: 1px 1px 4px black;
+}
+
+.model-info button:active {
+    box-shadow: inset 0px 0px 4px black;
+}

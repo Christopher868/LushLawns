@@ -1,0 +1,45 @@
+{% extends "webstore/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/models.css'%}">
+</head>
+
+
+<section class="models-top">
+    <p><a href="{% url 'home' %}">&larr; Back</a></p>
+    <form class="models-search search-bar" action="">
+        <div class="input-container">
+            <input type="search" name="search" id="search" placeholder="Search by Model Number">
+            <div class="label-container">
+                <label for="search"><button type="submit"><span class="material-symbols-outlined">search</span></button></label>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section class="models-header">
+<h2>Displaying All Available Models</h2>
+</section>
+
+<section class="models">
+    {% for models in models %}
+        {% if models %}
+        <div class="model-item">
+            {% if models.image %}
+                <img class="model-item-img" src="{{ models.image.url }}" alt="Image for Lawnmower model">
+            {% else %}
+                <img class="model-item-img" src="{% static 'images/Model-Alt-Img.png'%}" alt="Image for Lawnmower model">
+            {% endif %}    
+            <div class="model-info">
+                <p><span class="model-info-header">Brand Name:</span><br>{{ brands.name }}</p>
+                <p><span class="model-info-header">Model Number:</span><br>{{ models.model_number }} </p>
+                <button><a href="#">View Parts</a></button>
+            </div>    
+        </div>
+        {% endif %}
+    {% endfor %}    
+</section>
+
+{% endblock content %}
