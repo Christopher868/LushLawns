@@ -37,6 +37,10 @@
     font-size: clamp(20px, 4vw, 32px);
 }
 
+.models-search {
+    max-width: 800px;
+}
+
 /* Stylings for models portion of all-models page */
 
 .models {
