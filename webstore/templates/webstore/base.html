@@ -14,7 +14,10 @@
     <title>LushLawns</title>
 </head>
 <body>
+    {% comment %} header for entire webpage {% endcomment %}
     <header class="base-header">
+        
+        {% comment %} Area above nav includes branding, search bar, and shopping cart symbol/button {% endcomment %}
         <div class="header-top">
             <div></div>
             <h1 class="header-branding"><a href="{% url 'home' %}">Lush Lawns</a></h1>
@@ -35,24 +38,28 @@
                     </span>
                 </a>
             </div>
+            <div></div>
         </div>
-        <div></div>
+        
+        {% comment %} Navbar includes all parts, all mower models, contact us, and about us  {% endcomment %}
         <nav class="header-nav">
             <ul class="nav-list">
                 <li class="nav-item"><a href="{% url 'all_parts' %}" class="nav-link">All Parts</a></li>
-                <li class="nav-item"><a href="{% url 'all_models' %}" class="nav-link">Product Models</a></li>
+                <li class="nav-item"><a href="{% url 'all_models' %}" class="nav-link">All Mower Models</a></li>
                 <li class="nav-item"><a href="" class="nav-link">Contact Us</a></li>
                 <li class="nav-item"><a href="#about-us" class="nav-link">About Us</a></li>
             </ul>
         </nav>
     </header>
 
+    {% comment %} Reserved section for main content of each individual page {% endcomment %}
     <main class="base-main">
         {% block content %}
 
         {% endblock content %}
     </main>
 
+    {% comment %} Footer for entire website {% endcomment %}
     <footer class="base-footer">
         <h2 class="creator">Created by Christopher Hicks</h2>
         <h3 class="web-images">Images from <a href="https://unsplash.com/">Unsplash.com</a></h3>

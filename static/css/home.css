@@ -156,6 +156,7 @@
 
 .brand h3 {
     text-align: center;
+
 }
 
 .brand a {
@@ -163,6 +164,7 @@
     height: 100%;
     text-decoration: none;
     border-radius: 25%;
+    color: #4f772d;
 }
 
 /* Media Query */

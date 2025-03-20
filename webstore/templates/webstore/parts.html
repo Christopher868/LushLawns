@@ -4,11 +4,11 @@
 {% block content %}
 {% comment %} Page specific stylings {% endcomment %}
 <head>
-    <link rel="stylesheet" href="{% static 'css/all-parts.css'%}">
+    <link rel="stylesheet" href="{% static 'css/parts.css'%}">
 </head>
 
-{% comment %} Top of All Parts page including back button and search bar {% endcomment %}
-<section class="all-parts-top">
+{% comment %} Top of parts page including back button and search bar {% endcomment %}
+<section class="parts-top">
     <p><a href="{% url 'home' %}">&larr; Back</a></p>
     <form class="parts-search search-bar" action="">
         <div class="input-container">
@@ -20,33 +20,35 @@
     </form>
 </section>
 
-{% comment %} Header text for all parts page {% endcomment %}
-<section class="all-parts-header">
-    <h2>Displaying All Available Parts</h2>
+
+{% comment %} Header text for parts page {% endcomment %}
+<section class="parts-header">
+    {% if parts %}
+        <h2>Displaying All Parts <br> For Model: #{{ model.model_number }}</h2>
+    {% else %}
+        <h2>No Parts Available <br> For Model: #{{ model.model_number }}</h2>
+    {% endif %}
+
 </section>
 
-{% comment %} Section for displaying parts available to buy {% endcomment %}
+
+{% comment %} Section of page that displays parts based on model clicked on by user {% endcomment %}
 <section class="parts">
-    {% for parts in parts  %}
+    {% for parts in parts %}
         <div class="part-item">
             {% if parts.image %}
-                <img class="part-item-img" src="{{ parts.image.url }}" alt="Image for Lawnmower model">
+                <img class="part-item-img" src="{{ parts.image.url }}" alt="Image for Lawnmower part">
             {% else %}
                 <img class="part-item-img" src="{% static 'images/Part-Img-Alt.png'%}" alt="Image for Lawnmower part">
-            {% endif %}
+            {% endif %}    
             <div class="part-info">
-                <p><span class="part-info-header">Part Name:</span><br>{{ parts.part_name }}</p>
-                <p><span class="part-info-header">Part Number:</span><br>#{{ parts.part_number }} </p>
+                <p><span class="part-info-header">Part Name:</span><br>{{ model.brand }}</p>
+                <p><span class="part-info-header">Model Number:</span><br>#{{ parts.part_number }} </p>
                 <p><span class="part-info-header">Price:</span><br> ${{ parts.price }}</p>
                 <button><a href="#">View Part</a></button>
             </div>    
         </div>
-    {% endfor %}
+    {% endfor %}    
 </section>
 
 {% endblock content %}
-
-
-
-
-

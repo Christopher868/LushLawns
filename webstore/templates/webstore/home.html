@@ -4,14 +4,16 @@
 
 
 {%block content %}
+{% comment %} Page specific stylings {% endcomment %}
 <head>
     <link rel="stylesheet" href="{% static 'css/home.css'%}">
 </head>
 
+    {% comment %} Large photo displayed on homepage {% endcomment %}
     <section class="home-background"><img src="{% static 'images/Lawn-Mower.jpg' %}" alt=""></section>
     
-    <section class="about-us" id="about-us">
-        
+    {% comment %} About us section of homepage {% endcomment %}
+    <section class="about-us" id="about-us"> 
         <div class="about-header"><h2>Welcome to Lush Lawns  Mowing Parts!</h2>
             <h3>Let us tell you little about ourselves.</h3>
             <hr>
@@ -35,14 +37,14 @@
                 </p>
             </div>
         </div>
-
     </section>
-    
+
+    {% comment %} shop by brand header text {% endcomment %}
     <section class="brand-options-header"><h3>Shop By Brand</h3></section>
     
+    {% comment %} Section for displaying brands available to get parts from {% endcomment %}
     <section class="brand-options">
         {% for brand in brand  %}
-            {% if brand %}
                 <div class="brand"><a href="{% url 'models' brand.name %}">
                     {% if brand.image %}
                         <img src="{{ brand.image.url }}" alt="Logo for {{ brand.name }} brand">
@@ -50,8 +52,8 @@
                         <img src="{% static 'images/Brand-Logo-Alt.png' %}" alt="Logo for {{ brand.name }} brand">
                     {% endif %}
                     <h3>{{ brand.name }}</h3>
-                </a></div>
-            {% endif %}    
+                </a></div>   
         {% endfor %}
     </section>
+
 {% endblock content %}

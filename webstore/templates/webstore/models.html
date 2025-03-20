@@ -2,11 +2,12 @@
 {% load static %}
 
 {% block content %}
+{% comment %} Page specific stylings {% endcomment %}
 <head>
     <link rel="stylesheet" href="{% static 'css/models.css'%}">
 </head>
 
-
+{% comment %} Top of models page including back button and search bar {% endcomment %}
 <section class="models-top">
     <p><a href="{% url 'home' %}">&larr; Back</a></p>
     <form class="models-search search-bar" action="">
@@ -19,13 +20,18 @@
     </form>
 </section>
 
+{% comment %} Header text for models page {% endcomment %}
 <section class="models-header">
-<h2>Displaying All Available Models</h2>
+    {% if models %}
+        <h2>Displaying All Models <br> For Brand: {{ brands.name }}</h2>
+    {% else %}
+        <h2>No Models Available <br> For Brand: {{ brands.name }}</h2>
+    {% endif %}
 </section>
 
+{% comment %} Section of page that displays models based on brand clicked on by user {% endcomment %}
 <section class="models">
     {% for models in models %}
-        {% if models %}
         <div class="model-item">
             {% if models.image %}
                 <img class="model-item-img" src="{{ models.image.url }}" alt="Image for Lawnmower model">
@@ -35,10 +41,9 @@
             <div class="model-info">
                 <p><span class="model-info-header">Brand Name:</span><br>{{ brands.name }}</p>
                 <p><span class="model-info-header">Model Number:</span><br>{{ models.model_number }} </p>
-                <button><a href="#">View Parts</a></button>
+                <button><a href="{% url 'parts' models.model_number %}">View Parts</a></button>
             </div>    
         </div>
-        {% endif %}
     {% endfor %}    
 </section>
 
