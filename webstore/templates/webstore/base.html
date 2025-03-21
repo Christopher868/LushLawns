@@ -38,7 +38,7 @@
                     </span>
                 </a>
             </div>
-            <div></div>
+            <div class="login"><a href="#"><h2>Log In</h2></a></div>
         </div>
         
         {% comment %} Navbar includes all parts, all mower models, contact us, and about us  {% endcomment %}
@@ -46,7 +46,7 @@
             <ul class="nav-list">
                 <li class="nav-item"><a href="{% url 'all_parts' %}" class="nav-link">All Parts</a></li>
                 <li class="nav-item"><a href="{% url 'all_models' %}" class="nav-link">All Mower Models</a></li>
-                <li class="nav-item"><a href="" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="#base-footer" class="nav-link">Contact Us</a></li>
                 <li class="nav-item"><a href="#about-us" class="nav-link">About Us</a></li>
             </ul>
         </nav>
@@ -60,9 +60,18 @@
     </main>
 
     {% comment %} Footer for entire website {% endcomment %}
-    <footer class="base-footer">
-        <h2 class="creator">Created by Christopher Hicks</h2>
-        <h3 class="web-images">Images from <a href="https://unsplash.com/">Unsplash.com</a></h3>
+    <footer class="base-footer" id="base-footer">
+        <div class="site-credits">
+            <h2 class="creator">Created by Christopher Hicks</h2>
+            <h3 class="web-images">Images from <a href="https://unsplash.com/">Unsplash.com</a></h3>
+        </div>
+
+        <div class="contact-info-container">
+            <h3 class="contact-info-header">Contact Information</h3>  
+            <p><span>Phone Number:</span> <a href="tel:+7707729087">770-772-9087</a></p>
+            <p><span>Email Address:</span> <a href="mailto:LushLawnsSupport@gmail.com">LushLawnsSupport@gmail.com</a></p>
+            <p><span>Store Location:</span> 1414 Blue Ridge Dr Covington, Ga</p>
+        </div>
     </footer>
 </body>
 </html>
