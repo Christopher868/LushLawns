@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body stylings */
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 100px auto 1fr 100px;
+    font-family: "Tinos", serif;
+    grid-template-areas:
+        'header'
+        'msg'
+        'main'
+        'footer';
+}
+
+/* header stylings */
+header {
+    grid-area: header;
+    background-color: #4f772d;
+    box-shadow: 1px 1px 4px black;
+    z-index: 999;
+}
+
+/* message stylings */
+.alert {
+    margin-bottom: 0;
+    text-align: center;
+    min-height: 70px;
+    background-color: #FFBE0B80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert h3 {
+    font-weight: bolder;
+    color: black;
+}
+
+/* main stylings */
+main {
+    grid-area: main;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    border-left: 1px solid #4f772d;
+    border-right: 1px solid #4f772d;
+}
+
+.login-form {
+    display: grid;
+    grid-template-rows: repeat(3, 100px);
+    justify-items: center;
+    align-items: center;
+    margin: auto 0;
+    vertical-align: center;
+    row-gap: 10px;
+}
+
+.login-form div {
+    width: 60%;
+    min-width: 300px;
+    margin: 0 auto;
+}
+
+.username-box label,
+.password-box label {
+    font-size: 1.8rem;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #4f772d;
+    margin: 15px 0;
+}
+
+.username-box input,
+.password-box input {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border: 1px solid #4f772d;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.username-box input:hover,
+.password-box input:hover {
+    box-shadow: 0px 0px 3px black;
+}
+
+.username-box input:focus,
+.password-box input:focus {
+    outline: none;
+    box-shadow: 0px 0px 3px black;
+}
+
+
+
+.button-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button-box button {
+    padding: 7px 50px;
+    border-radius: 10px;
+    border: 1px solid #4f772d;
+    font-size: 1.2rem;
+    color: #4f772d;
+    font-weight: bold;
+}
+
+.button-box button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 3px black;
+}
+
+.button-box button:active {
+    box-shadow: inset 0px 0px 3px black;
+}
+
+.button-box a {
+    text-decoration: none;
+    color: #4f772d;
+}
+
+.button-box .back {
+    padding: 7px 45px;
+}
+
+.login-form p {
+    color: #4f772d;
+    font-size: 1.2rem;
+}
+
+/* footer stylings */
+footer {
+    grid-area: footer;
+    background-color: #4f772d;
+    box-shadow: 1px 1px 4px black;
+    z-index: 999;
+}

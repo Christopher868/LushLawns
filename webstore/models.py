@@ -1,5 +1,7 @@
 from django.db import models
 
+
+# Model for brands of mowers available
 class Brand(models.Model):
     name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='brands/', default='', null=True, blank=True)
@@ -7,6 +9,7 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+# Model for Lawn mower models
 class Mower_Model(models.Model):
     model_number = models.CharField(max_length=20)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE) 
@@ -19,6 +22,7 @@ class Mower_Model(models.Model):
     class Meta:
         verbose_name="Lawnmower Model"
 
+# Model for mower parts
 class Part(models.Model):
     part_number = models.CharField(max_length=20)
     mower_model = models.ManyToManyField(Mower_Model)
