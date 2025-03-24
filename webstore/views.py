@@ -83,11 +83,10 @@ def register_user(request):
                 password = form.cleaned_data['password1']
                 user = authenticate(username=username, password=password)
                 login(request, user)
-                messages.success(request, ("Account Successfully Created and Logged into!"))
+                messages.success(request, ("Account Successfully Created!"))
                 return redirect('home')
                 
             else:
-                messages.success(request, ("Error! 1 or more fields filled out incorrectly"))
                 return render(request, 'webstore/register.html', {'form': form})
 
         else:

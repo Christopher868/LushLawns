@@ -29,7 +29,7 @@ header {
 .alert {
     margin-bottom: 0;
     text-align: center;
-    min-height: 70px;
+    min-height: 50px;
     background-color: #FFBE0B80;
     display: flex;
     align-items: center;
@@ -39,6 +39,7 @@ header {
 .alert h3 {
     font-weight: bolder;
     color: black;
+    font-size: 1.5rem;
 }
 
 /* main stylings */

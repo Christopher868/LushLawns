@@ -30,9 +30,9 @@
     {% for parts in parts  %}
         <div class="part-item">
             {% if parts.image %}
-                <img class="part-item-img" src="{{ parts.image.url }}" alt="Image for Lawnmower model">
+                <img class="part-item-img" src="{{ parts.image.url }}" alt="Image for Lawnmower part model {{ parts.part_number }}">
             {% else %}
-                <img class="part-item-img" src="{% static 'images/Part-Img-Alt.png'%}" alt="Image for Lawnmower part">
+                <img class="part-item-img" src="{% static 'images/Part-Img-Alt.png'%}" alt="Image for Lawnmower part model {{ parts.part_number }}">
             {% endif %}
             <div class="part-info">
                 <p><span class="part-info-header">Part Name:</span><br>{{ parts.part_name }}</p>

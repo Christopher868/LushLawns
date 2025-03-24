@@ -35,9 +35,9 @@
     {% for models in models %}
         <div class="model-item">
             {% if models.image %}
-                <img class="model-item-img" src="{{ models.image.url }}" alt="Image for Lawnmower model">
+                <img class="model-item-img" src="{{ models.image.url }}" alt="Image for Lawnmower model {{models.model_number}}">
             {% else %}
-                <img class="model-item-img" src="{% static 'images/Model-Alt-Img.png'%}" alt="Image for Lawnmower model">
+                <img class="model-item-img" src="{% static 'images/Model-Alt-Img.png'%}" alt="Image for Lawnmower model {{models.model_number}}">
             {% endif %}    
             <div class="model-info">
                 <p><span class="model-info-header">Brand Name:</span><br>{{ models.brand }}</p>

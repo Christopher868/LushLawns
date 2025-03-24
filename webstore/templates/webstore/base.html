@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/base.css'%}">
+    <script src="{% static 'js/base.js'%}"></script>
+    
     <title>LushLawns</title>
 </head>
 <body>
@@ -86,15 +88,4 @@
         </div>
     </footer>
 </body>
-
-<script>
-    setTimeout(function() {
-        let alerts = document.querySelectorAll(".alert");
-        alerts.forEach(function(alert) {
-            alert.style.transition = "opacity 0.5s";
-            alert.style.opacity = "0";
-            setTimeout(() => alert.remove(), 500);
-        });
-    }, 3000);  // Message disappears after 3 seconds
-</script>
 </html>
