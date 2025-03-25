@@ -33,22 +33,22 @@
 
 
 <!--Section of page that displays parts based on model clicked on by user-->
-<section class="parts">
-    {% for parts in parts %}
-        <div class="part-item">
-            {% if parts.image %}
-                <img class="part-item-img" src="{{ parts.image.url }}" alt="Image for Lawnmower part model {{ parts.part_number }}">
-            {% else %}
-                <img class="part-item-img" src="{% static 'images/Part-Img-Alt.png'%}" alt="Image for Lawnmower part model {{ parts.part_number }}">
-            {% endif %}    
-            <div class="part-info">
-                <p><span class="part-info-header">Part Name:</span><br>{{ parts.part_name }}</p>
-                <p><span class="part-info-header">Model Number:</span><br>#{{ parts.part_number }} </p>
-                <p><span class="part-info-header">Price:</span><br> ${{ parts.price }}</p>
-                <button><a href="{% url 'part-info' parts.part_number  %}">View Part</a></button>
-            </div>    
-        </div>
-    {% endfor %}    
+<section class="part-options">
+    <div class="diagram"><img src="{%static 'images/Model-Diagram-Alt.png'%}" alt=""></div>
+    <div class="part-selection">
+    {% for part in parts %}    
+       <div class="part-container">
+            <ul class="part-info-list">
+                <li class="part-info-item"><span>Part Name<br></span>{{part.part_name}}</li>
+                <li class="part-info-item"><span>Part Number<br></span>#{{ part.part_number}}</li>
+                <li class="part-info-item"><span>Price<br></span>${{ part.price }}</li>
+                <li class="part-info-item"><button type="button"><a href="{% url 'part-info' part.part_number %}">View Part</a></button></li>
+            </ul>
+        
+        
+       </div>
+    {% endfor %}   
+    </div>
 </section>
 
 {% endblock content %}
