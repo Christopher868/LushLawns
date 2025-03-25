@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-{% comment %} Page specific stylings {% endcomment %}
+<!--Page specific stylings-->
 <head>
     <link rel="stylesheet" href="{% static 'css/models.css'%}">
 </head>
 
-{% comment %} Top of models page including back button and search bar {% endcomment %}
+<!--Top of models page including back button and search bar-->
 <section class="models-top">
     <p><a href="{% url 'home' %}">&larr; Back</a></p>
     <form class="models-search search-bar" action="">
@@ -20,7 +20,7 @@
     </form>
 </section>
 
-{% comment %} Header text for models page {% endcomment %}
+<!--Header text for models page-->
 <section class="models-header">
     {% if models %}
         <h2>Displaying All Models <br> For Brand: {{ brands.name }}</h2>
@@ -29,7 +29,7 @@
     {% endif %}
 </section>
 
-{% comment %} Section of page that displays models based on brand clicked on by user {% endcomment %}
+<!--Section of page that displays models based on brand clicked on by user-->
 <section class="models">
     {% for models in models %}
         <div class="model-item">

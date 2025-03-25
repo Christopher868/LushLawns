@@ -4,18 +4,19 @@
 
 
 {%block content %}
-{% comment %} Page specific stylings {% endcomment %}
+<!--Page specific stylings-->
 <head>
     <link rel="stylesheet" href="{% static 'css/home.css'%}">
 </head>
 
-    {% comment %} Large photo displayed on homepage {% endcomment %}
+    <!--Large photo displayed on homepage-->
     <section class="home-background"><img src="{% static 'images/Lawn-Mower.jpg' %}" alt=""></section>
     
-    {% comment %} About us section of homepage {% endcomment %}
+    <!--About us section of homepage-->
     <section class="about-us-header-text" id="about-us-header-text"><h3>About Us</h3></section>
     <section class="about-us" id="about-us"> 
-        <div class="about-header"><h2>Welcome to Lush Lawns  Mowing Parts!</h2>
+        <div class="about-header">
+            <h2>Welcome to Lush Lawns  Mowing Parts!</h2>
             <h3>Let us tell you little about ourselves.</h3>
             <hr>
             <p class="about-msg">It all started when a group of guys who wanted to make some money while in college took a class together. All the guys cut lawns as kids to make a little money, 
@@ -40,10 +41,10 @@
         </div>
     </section>
 
-    {% comment %} shop by brand header text {% endcomment %}
+    <!--shop by brand header text-->
     <section class="brand-options-header"><h3>Shop By Brand</h3></section>
     
-    {% comment %} Section for displaying brands available to get parts from {% endcomment %}
+    <!--Section for displaying brands available to get parts from-->
     <section class="brand-options">
         {% for brand in brand  %}
                 <div class="brand"><a href="{% url 'models' brand.name %}">

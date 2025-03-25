@@ -1,0 +1,36 @@
+{% extends "webstore/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/part-info.css'%}">
+</head>
+
+<!--Back button -->
+<p class="back-button"><a href="#" onclick="history.back()">&larr; Back</a></p>
+
+
+<!--Section that displays part info and image>-->
+<section class="part-page-info">
+
+    <div class="img-container">
+        <img src="{% static 'images/Part-Img-Alt.png'%}" alt="Picture for part {{ part.quantity }}">
+    </div>
+    
+        <div class="info-container">
+        <ul class="part-info-list">
+            <li><span>Part Number </span><br> #{{ part.part_number }}</li>
+            <li><span>Part Name </span><br>{{ part.part_name }}</li>
+            <li id="price"><span>Price </span><br>${{ part.price }}</li>
+            <li><span>Quantity Available </span><br>{{ part.quantity }}</li>
+            <li class="button-container"><button type="button" id="add-to-cart">Add to Cart</button></li>
+            <li id="Desc"><span>Part Description</span><br>{{ part.description }}</li>
+            <li id="compatible"><span>Compatible Mower Models </span><br><span id="scroll">{% for model in mower_model  %} #{{ model }}<br>{% endfor %}</span></li> <!-- Has for loop to loop through various models part is compatible with -->
+
+        </ul>
+        <button type="button"></button>
+    </div>
+
+</section>
+
+{% endblock content %}

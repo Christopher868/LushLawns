@@ -75,14 +75,14 @@ body {
 
 
 .header-branding {
-    width: clamp(100px, 10vw, 200px);
+    width: clamp(50px, 10vw, 200px);
     font-weight: 600;
     line-height: 25px;
     font-size: clamp(24px, 4vw, 32px);
 }
 
 .shopping-cart {
-    width: clamp(100px, 10vw, 200px);
+    width: clamp(50px, 10vw, 200px);
     font-weight: 600;
     font-size: clamp(24px, 4vw, 32px);
     height: 100%;
@@ -104,6 +104,12 @@ body {
 .cart {
     font-size: 30px;
 
+}
+
+.menu-symbol {
+    font-size: 30px;
+    display: none;
+    justify-content: center;
 }
 
 .item-count {
@@ -295,4 +301,31 @@ body {
 
 .contact-info-container p {
     margin-bottom: 0;
+}
+
+
+/* Media Queries */
+
+@media(max-width:800px) {
+
+    .login-user {
+        display: none;
+    }
+
+    .menu-symbol {
+        display: flex;
+    }
+}
+
+@media(max-width:600px) {
+    .search-bar {
+        display: none;
+    }
+
+    .shopping-cart,
+    .menu-container,
+    .header-branding {
+        flex: 1;
+    }
+
 }

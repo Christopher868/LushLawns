@@ -10,5 +10,6 @@ urlpatterns = [
     path('parts/<str:model_num>', views.parts, name='parts'),
     path('login/', views.login_user, name='login'),
     path('register/', views.register_user, name='register'),
-    path('logout', views.logout_user, name='logout'),
+    path('logout/', views.logout_user, name='logout'),
+    path('part/<str:part_num>', views.part_info, name='part-info'),
 ]

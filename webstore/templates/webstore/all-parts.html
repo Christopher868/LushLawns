@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-{% comment %} Page specific stylings {% endcomment %}
+<!--Page specific stylings-->
 <head>
     <link rel="stylesheet" href="{% static 'css/all-parts.css'%}">
 </head>
 
-{% comment %} Top of All Parts page including back button and search bar {% endcomment %}
+<!--Top of All Parts page including back button and search bar-->
 <section class="all-parts-top">
     <p><a href="{% url 'home' %}">&larr; Back</a></p>
     <form class="parts-search search-bar" action="">
@@ -20,12 +20,12 @@
     </form>
 </section>
 
-{% comment %} Header text for all parts page {% endcomment %}
+<!--Header text for all parts page-->
 <section class="all-parts-header">
     <h2>Displaying All Available Parts</h2>
 </section>
 
-{% comment %} Section for displaying parts available to buy {% endcomment %}
+<!--Section for displaying parts available to buy-->
 <section class="parts">
     {% for parts in parts  %}
         <div class="part-item">
@@ -38,7 +38,7 @@
                 <p><span class="part-info-header">Part Name:</span><br>{{ parts.part_name }}</p>
                 <p><span class="part-info-header">Part Number:</span><br>#{{ parts.part_number }} </p>
                 <p><span class="part-info-header">Price:</span><br> ${{ parts.price }}</p>
-                <button><a href="#">View Part</a></button>
+                <button><a href="{% url 'part-info' parts.part_number %}">View Part</a></button>
             </div>    
         </div>
     {% endfor %}

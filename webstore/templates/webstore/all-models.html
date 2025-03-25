@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-{% comment %} Page specific stylings {% endcomment %}
+<!--Page specific stylings-->
 <head>
     <link rel="stylesheet" href="{% static 'css/all-models.css'%}">
 </head>
 
-{% comment %} Top of All Models page including back button and search bar {% endcomment %}
+<!--Top of All Models page including back button and search bar-->
 <section class="all-models-top">
         <p><a href="{% url 'home' %}">&larr; Back</a></p>
         <form class="models-search search-bar" action="">
@@ -20,7 +20,7 @@
         </form>
 </section>
 
-{% comment %} Header text for all models page {% endcomment %}
+<!--Header text for all models page-->
 <section class="all-models-header">
     {% if models %}
         <h2>Displaying All Available Models</h2>
@@ -30,7 +30,7 @@
 </section>
 
 
-{% comment %} Section of the page that displays all models available {% endcomment %}
+<!--Section of the page that displays all models available-->
 <section class="models">
     {% for models in models %}
         <div class="model-item">

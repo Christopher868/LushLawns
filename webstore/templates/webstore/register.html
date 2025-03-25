@@ -10,9 +10,8 @@
 </head>
 <body>
     <header></header>
-    {% comment %} Displays messages for user {% endcomment %}
+    <!--Displays messages for user-->
     {% with first_error_displayed=False %}
-        <!-- Loop through all the fields -->
         {% for field in form %}
             {% if field.errors and not first_error_displayed %}
                 <div class="alert" role="alert">
@@ -26,7 +25,7 @@
     
    
     <main>
-        {% comment %} Form for handling user registration {% endcomment %}
+        <!--Form for handling user registration-->
         <form class="login-form" method="POST" action="{% url 'register' %}">
             {% csrf_token %}
             
@@ -38,7 +37,7 @@
             <div class="form-box"><label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>{{ form.password2 }} <small>{{ form.password2.help_text }}</small></div>
             
             <div class="button-box form-box">
-                <a href="{% url 'home' %}"><button type="button" class="back">Cancel</button></a>
+                <button type="button" class="back" onclick="history.back()">Cancel</button></a>
                 <button type="submit">Register</button>
         </div>
         </form>

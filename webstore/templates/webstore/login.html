@@ -11,7 +11,7 @@
 </head>
 <body>
     <header></header>
-    {% comment %} Displays messages for user {% endcomment %}
+    <!--Displays messages for user-->
     {% if messages %}
         {% for message in messages %}
             <div class="alert" role="alert">
@@ -20,6 +20,7 @@
         {% endfor %}
     {% endif %}
     <main>
+        <!--Form that allows users that already have an account to login-->
         <form class="login-form" method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="username-box">
@@ -33,7 +34,7 @@
             </div>
 
             <div class="button-box">
-                <a href="{% url 'home' %}"><button type="button" class="back">Cancel</button></a>
+                <button type="button" class="back " onclick="history.back()">Cancel</button>
                 <button type="submit">Login</button>
             </div>
 

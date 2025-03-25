@@ -30,6 +30,7 @@ class Part(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     part_name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='parts/', default='', blank=True, null=True)
+    description = models.CharField(max_length=200, default="No Description Available")
 
 
     def __str__(self):

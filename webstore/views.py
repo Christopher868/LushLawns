@@ -44,6 +44,13 @@ def parts(request, model_num):
     return render(request, 'webstore/parts.html', {'parts':parts, 'model':model})
 
 
+# View for viewing details on specific part
+def part_info(request, part_num):
+    part = Part.objects.filter(part_number = part_num).first()
+    mower_model = part.mower_model.all()
+    return render(request, 'webstore/part-info.html', {'part': part, 'mower_model': mower_model})
+
+
 # View for customer login page
 def login_user(request):
     if request.user.is_authenticated:
@@ -92,3 +99,4 @@ def register_user(request):
         else:
             form = CreateUserForm()
             return render(request, 'webstore/register.html', {'form': form})
+        
