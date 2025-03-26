@@ -107,8 +107,8 @@ def search(request):
     if request.method == "POST":
         search = request.POST['search']
         model = Mower_Model.objects.filter(model_number__contains=search) 
-        part = Part.objects.filter(mower_model__in=search).distinct()
-        result = chain(model, part)
+        part = Part.objects.filter(part_number__contains=search)
+        result = list(chain(model, part))
         return render(request, 'webstore/search.html', {'result':result, 'search': search})
     else:
         return render(request, 'webstore/search.html', {})
