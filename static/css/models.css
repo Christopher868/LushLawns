@@ -3,7 +3,7 @@
 }
 
 
-/* Stylings for top of all Model page */
+/* Stylings for top of Model page */
 .models-top {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -41,7 +41,7 @@
     max-width: 800px;
 }
 
-/* Stylings for models portion of all-models page */
+/* Stylings for models portion of models page */
 
 .models {
     display: grid;

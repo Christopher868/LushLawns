@@ -21,7 +21,6 @@
         
         <!--Area above nav includes branding, search bar, and shopping cart symbol/button-->
         <div class="header-top">
-            <div></div>
             <h1 class="header-branding"><a href="{% url 'home' %}">Lush Lawns</a></h1>
             <form action="" class="search-bar">
                 <div class="input-container">
@@ -31,24 +30,26 @@
                     </div>
                 </div>
             </form>
-            <div class="menu-container">
-                <span class="material-symbols-outlined menu-symbol">menu</span>
-            </div>
-            <div class="shopping-cart">
-                <a href="{% url 'cart' %}">
-                    <span class="material-symbols-outlined"><span class="cart">shopping_cart</span>  
-                        <div class="item-counter">
-                            <p class="count">12</p>
-                        </div>
-                    </span>
-                </a>
-            </div>
-            {% if user.is_authenticated %}
-                <div class="login-user logout-user"><a href="{% url 'logout' %}"><h2>Logout</h2></a></div>
-            {% else %}
-                <div class="login-user logout-user"><a href="{% url 'login' %}"><h2>Log In</h2></a></div>
-            {% endif %}
-                
+            
+            <div class="header-top-links">
+                <div class="menu-container">
+                    <span class="material-symbols-outlined menu-symbol">menu</span>
+                </div>
+                <div class="shopping-cart">
+                    <a href="{% url 'cart' %}">
+                        <span class="material-symbols-outlined"><span class="cart">shopping_cart</span>  
+                            <div class="item-counter">
+                                <p class="count">12</p>
+                            </div>
+                        </span>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                    <div class="login-user logout-user"><a href="{% url 'logout' %}"><h2>Logout</h2></a></div>
+                {% else %}
+                    <div class="login-user logout-user"><a href="{% url 'login' %}"><h2>Log In</h2></a></div>
+                {% endif %}
+            </div>    
         </div>
         
         <!--Navbar includes all parts, all mower models, contact us, and about us--> 
