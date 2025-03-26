@@ -3,6 +3,7 @@ from .models import Brand, Mower_Model, Part
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm
+from itertools import chain
 
 
 # View for homepage that displays all brands
@@ -99,4 +100,16 @@ def register_user(request):
         else:
             form = CreateUserForm()
             return render(request, 'webstore/register.html', {'form': form})
+        
+
+#View for searching using the search bar
+def search(request):
+    if request.method == "POST":
+        search = request.POST['search']
+        model = Mower_Model.objects.filter(model_number__contains=search) 
+        part = Part.objects.filter(mower_model__in=search).distinct()
+        result = chain(model, part)
+        return render(request, 'webstore/search.html', {'result':result, 'search': search})
+    else:
+        return render(request, 'webstore/search.html', {})
         

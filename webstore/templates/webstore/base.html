@@ -22,9 +22,10 @@
         <!--Area above nav includes branding, search bar, and shopping cart symbol/button-->
         <div class="header-top">
             <h1 class="header-branding"><a href="{% url 'home' %}">Lush Lawns</a></h1>
-            <form action="" class="search-bar">
+            <form action="{% url 'search'%}" class="search-bar" role="search" method="POST" id="search">
+                {% csrf_token %}
                 <div class="input-container">
-                    <input type="search" name="search" id="search" placeholder="Search by Model Number">
+                    <input type="search" name="search" id="search" placeholder="Search by Model Number or Part Number">
                     <div class="label-container">
                         <label for="search"><button type="submit"><span class="material-symbols-outlined">search</span></button></label>
                     </div>

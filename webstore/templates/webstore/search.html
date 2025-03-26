@@ -1,0 +1,75 @@
+{% extends "webstore/base.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/search.css'%}">
+</head>
+
+<!--Top of search page including back button and search bar-->
+<section class="result-top">
+    <p><a href="#" onclick="history.back()">&larr; Back</a></p>
+    <form class="result-search search-bar" action="">
+        <div class="input-container">
+            <input type="search" name="search" id="search" placeholder="Search results">
+            <div class="label-container">
+                <label for="search"><button type="submit"><span class="material-symbols-outlined">search</span></button></label>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!--Header text for search page-->
+<section class="result-header">
+    {% if result %}
+        <h2>Displaying All <br>Search Results For: {{ search }}</h2>
+    {% else %}
+        <h2>No Results For: {{ search }}</h2>
+    {% endif %}
+</section>
+
+<!--Section of page that displays models or parts based on user search input-->
+<!--This section includes several if statements to check if result is a mower model or a part-->
+<section class="result">
+    {% for result in result %}
+        <div class="result-item">
+            {% if result.image %}
+                {% if result.model_number %}
+                <img class="result-item-img" src="{{ result.image.url }}" alt="Image for Lawnmower Model {{ result.model_number }}">
+                {% else %}
+                <img class="result-item-img" src="{{ result.image.url }}" alt="Image for Part Number {{ result.part_number }}">
+                {% endif %}
+            {% else %}
+                {% if result.model_number %}
+                <img class="result-item-img" src="{% static 'images/Model-Alt-Img.png'%}" alt="Image for Lawnmower Model {{ result.model_number }}">
+                {% else %}
+                <img class="result-item-img" src="{% static 'images/Part-Img-Alt.png'%}" alt="Image for Part Number {{ result.part_number }}">
+                {% endif %}
+            {% endif %}   
+
+            <div class="result-info">
+                {% if result.brand %}
+                <p><span class="result-info-header">Brand Name:</span><br>{{ result.brand }}</p>
+                {% else %}
+                <p><span class="result-info-header">Part Name:</span><br>{{ result.part_name }}</p>
+                {% endif %}
+
+                {% if result.model_number %}
+                <p><span class="result-info-header">Model Number:</span><br>#{{ result.model_number }} </p>
+                {% else %}
+                <p><span class="result-info-header">Part Number:</span><br>#{{ result.part_number }} </p>
+                {% endif %}
+
+                {% if result.model_number %}
+                <button><a href="{% url 'parts' result.model_number %}">View Parts</a></button>
+                {% else %}
+                <button><a href="{% url 'part-info' result.part_number %}">Part Info</a></button>
+                {% endif %} 
+            </div>    
+        </div>
+    {% endfor %}    
+</section>
+
+
+{% endblock content %}
+
