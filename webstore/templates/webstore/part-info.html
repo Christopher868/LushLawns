@@ -17,18 +17,23 @@
         <img src="{% static 'images/Part-Img-Alt.png'%}" alt="Picture for part {{ part.quantity }}">
     </div>
     
-        <div class="info-container">
+    <div class="info-container">
         <ul class="part-info-list">
             <li><span>Part Number </span><br> #{{ part.part_number }}</li>
             <li><span>Part Name </span><br>{{ part.part_name }}</li>
             <li id="price"><span>Price </span><br>${{ part.price }}</li>
             <li><span>Quantity Available </span><br>{{ part.quantity }}</li>
-            <li class="button-container"><button type="button" id="add-to-cart">Add to Cart</button></li>
+            <li class="button-container">
+                {% if part.quantity == 0 %}
+                <a href="{% url 'cart_add' part.id %}" class="button-link disabled"><button type="button" class="add-to-cart disabled">Out of Stock</button></a>
+                {% else %}
+                <a href="{% url 'cart_add' part.id %}" class="button-link"><button type="button" class="add-to-cart">Add to Cart</button></a>
+                {% endif %}
+            </li>
             <li id="Desc"><span>Part Description</span><br>{{ part.description }}</li>
             <li id="compatible"><span>Compatible Mower Models </span><br><span id="scroll">{% for model in mower_model  %} #{{ model }}<br>{% endfor %}</span></li> <!-- Has for loop to loop through various models part is compatible with -->
 
         </ul>
-        <button type="button"></button>
     </div>
 
 </section>

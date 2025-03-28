@@ -1,0 +1,52 @@
+{% extends "webstore/base.html" %}
+{% load static %}
+
+{% block content %}
+<!--Page specific stylings-->
+<head>
+    <link rel="stylesheet" href="{% static 'css/cart.css'%}">
+</head>
+
+
+ <section class="cart-page-header">
+    <p><a href="#" class="back-button" onclick="history.back()">&larr; Back</a></p>
+    <h2 class="cart-header-text">Your Cart</h2>
+</section> 
+
+
+<section class="cart-container">
+
+    <!--Sidebar that displays breakdown of total cost-->
+    <sidebar class="cost">
+        <h2 class="cost-header-text">Your Order<br>Total</h2>
+        <p>Subtotal: ${{ sub_total_price|floatformat:2 }}</p>
+        <p>Shipping: $14.99</p>
+        <p>Taxes: ${{ tax|floatformat:2 }}</p>
+        <h2 class="cost-header-text">Total Cost</h2>
+        <p>${{ total|floatformat:2 }}</p>
+        <a href="{% url 'checkout' %}"><button type="button" id="checkout">Checkout</button></a>
+
+    </sidebar>
+
+    <!--Container for each item added to cart-->
+    <div class="cart-item-container">
+        {% for part_id, part in cart.items %}
+        <div class="cart-item">
+            <img src="{%static 'images/Part-Img-Alt.png'%}" alt="">
+            <div class="cart-item-info">
+                <p class="item-info"><span class="item-info-header">Part Name<br></span>{{ part.name }}</p>
+                <p class="item-info"><span class="item-info-header">Part Number<br></span>#{{ part.model }}</p>
+                <p class="item-info"><span class="item-info-header">Price<br></span>${{ part.price }}</p>
+            </div>
+            <div class="quantity remove"><span class="quantity-text">Quantity: &nbsp;</span> {{ part.quantity }}
+                <form action="{% url 'cart_delete' part_id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" id="x-button"><span class="material-symbols-outlined x">close</span></button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}    
+    </div>    
+</section>
+{% endblock content %}
+

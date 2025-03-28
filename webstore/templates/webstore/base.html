@@ -37,10 +37,10 @@
                     <span class="material-symbols-outlined menu-symbol">menu</span>
                 </div>
                 <div class="shopping-cart">
-                    <a href="{% url 'cart' %}">
+                    <a href="{% url 'cart_summary' %}">
                         <span class="material-symbols-outlined"><span class="cart">shopping_cart</span>  
                             <div class="item-counter">
-                                <p class="count">12</p>
+                                <p class="count">{{ cart_total }}</p>
                             </div>
                         </span>
                     </a>

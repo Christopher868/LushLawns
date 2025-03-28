@@ -24,10 +24,6 @@ def all_parts(request):
     return render(request, 'webstore/all-parts.html', {'parts':parts})
 
 
-# View for cart page
-def cart(request):
-    return render(request, 'webstore/cart.html', {})
-
 
 # View for models page that displays models based upon brand clicked by user
 def models(request, brand_name):

@@ -94,6 +94,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
 }
 
 .cart-item {
@@ -143,6 +144,8 @@ main {
     flex: 1;
     border-left: 1px solid black;
     min-width: 375px;
+    max-height: 550px;
+    overflow-y: auto;
 }
 
 .quantity {
@@ -165,6 +168,18 @@ main {
     margin-left: 20px;
     font-size: clamp(1.5rem, 3vw, 1.8rem);
 
+}
+
+#x-button {
+    all: unset;
+
+    &:hover {
+        filter: drop-shadow(0px 0px 1px #4f772d);
+    }
+
+    &:active {
+        filter: none;
+    }
 }
 
 

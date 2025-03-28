@@ -87,20 +87,29 @@ main {
     padding-top: 15px;
 }
 
-#add-to-cart {
+.add-to-cart {
     padding: 10px 25px;
-    font-weight: bold;
-    border: 1px solid #4f772d;
     color: #4f772d;
+    border: 1px solid #4f772d;
+    font-weight: bold;
     border-radius: 10px;
 }
 
-#add-to-cart:hover {
+
+
+.disabled,
+.disabled a {
+    pointer-events: none;
+}
+
+
+
+.add-to-cart:hover {
     cursor: pointer;
     box-shadow: 0px 0px 3px black;
 }
 
-#add-to-cart:active {
+.add-to-cart:active {
     box-shadow: inset 0px 0px 3px black;
 }
 
