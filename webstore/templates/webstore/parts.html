@@ -42,7 +42,7 @@
                 <li class="part-info-item"><span>Part Name<br></span>{{part.part_name}}</li>
                 <li class="part-info-item"><span>Part Number<br></span>#{{ part.part_number}}</li>
                 <li class="part-info-item"><span>Price<br></span>${{ part.price }}</li>
-                <li class="part-info-item"><button type="button"><a href="{% url 'part-info' part.part_number %}">View Part</a></button></li>
+                <li class="part-info-item"><a href="{% url 'part-info' part.part_number %}"><button type="button">View Part</button></a></li>
             </ul>
         
         

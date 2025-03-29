@@ -42,7 +42,7 @@
             <div class="model-info">
                 <p><span class="model-info-header">Brand Name:</span><br>{{ models.brand }}</p>
                 <p><span class="model-info-header">Model Number:</span><br>#{{models.model_number}}</p>
-                <button><a href="{% url 'parts' models.model_number %}">View Parts</a></button>
+                <a href="{% url 'parts' models.model_number %}"><button>View Parts</button></a>
             </div>    
         </div>
     {% endfor %}    

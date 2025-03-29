@@ -38,7 +38,7 @@
                 <p><span class="part-info-header">Part Name:</span><br>{{ parts.part_name }}</p>
                 <p><span class="part-info-header">Part Number:</span><br>#{{ parts.part_number }} </p>
                 <p><span class="part-info-header">Price:</span><br> ${{ parts.price }}</p>
-                <button><a href="{% url 'part-info' parts.part_number %}">View Part</a></button>
+                <a href="{% url 'part-info' parts.part_number %}"><button>View Part</button></a>
             </div>    
         </div>
     {% endfor %}

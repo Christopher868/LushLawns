@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Tinos", serif;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 75px 1fr 75px;
+}
+
+header,
+footer {
+    background-color: #4f772d;
+}
+
+main {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    color: #4f772d;
+}

@@ -13,7 +13,16 @@
     <header>
     </header>
     <main>
-       
+        <div class="img-container">
+            <img src="{% static 'images/Lawn-Mower.jpg' %}" alt="">
+        </div>
+        <div class="info-box">
+            <h2>Order placed! Your parts will be on the way shortly!</h2>
+            <h3>Your order ID: <span id="order-id">#432434324</span></h3>
+            <small>Note: If you are making a purchase without an account keep track of this ID number until your order is complete.</small>
+            <br>
+            <a href="{%url 'home' %}"><button type='button'>Return to Homepage</button></a>
+        </div>
     </main>
     <footer>
     </footer>

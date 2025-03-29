@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
-from webstore.models import Part
+from webstore.models import Part, Order, OrderItem
 from django.contrib import messages
 
 
@@ -43,4 +43,28 @@ def cart_update(request):
     return render(request, 'cart.html', {})
 
 
+# View that generates an order for your purchase
+def create_order(request):
+    cart = Cart(request)
+    items = cart.get_cart_items()
+    if len(items) == 0:
+        messages.success(request, ("No items in cart checkout unsuccessful!"))
+        return redirect('cart_summary')
+    
+    user = request.user if request.user.is_authenticated else None
+    order = Order.objects.create(user=user, total_price=cart.get_price(items))
 
+    for key in items:
+        OrderItem.objects.create(
+            order=order,
+            part = Part.objects.get(id=items[key]['id']),
+            price = items[key]['price'],
+            quantity = items[key]['quantity']
+        )
+
+    cart.clear()
+    return redirect('order_success')
+
+
+def order_success(request):
+    return render(request, 'order_success.html', {})

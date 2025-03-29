@@ -24,7 +24,7 @@
         <p>Taxes: ${{ tax|floatformat:2 }}</p>
         <h2 class="cost-header-text">Total Cost</h2>
         <p>${{ total|floatformat:2 }}</p>
-        <a href="{% url 'checkout' %}"><button type="button" id="checkout">Checkout</button></a>
+        <a href="{% url 'create_order' %}"><button type="button" id="checkout">Checkout</button></a>
 
     </sidebar>
 
