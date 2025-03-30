@@ -32,7 +32,7 @@ main {
     margin: 0 auto;
 }
 
-main h2 {
+.page-header {
     font-size: 2rem;
     margin-top: 25px;
 }
@@ -105,13 +105,22 @@ main h2 {
     align-self: start;
 }
 
+
+.button-box {
+    display: flex;
+    flex-direction: column;
+}
+
 .button-box button {
     min-width: 150px;
+    width: 100%;
+    max-width: 400px;
     padding: 6px 15px;
     border-radius: 10px;
     border: 1px solid #4f772d;
     color: #4f772d;
     font-weight: bold;
+    margin: 10px auto 0 auto;
 
     &:hover {
         box-shadow: 0px 0px 3px black;
@@ -140,6 +149,7 @@ main h2 {
     grid-template-rows: auto auto;
     column-gap: 10px;
     row-gap: 10px;
+    flex-wrap: wrap;
 }
 
 .street {
@@ -153,6 +163,9 @@ main h2 {
     max-width: 800px;
     margin-bottom: 50px;
     border: 1px solid #4f772d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .name-box {

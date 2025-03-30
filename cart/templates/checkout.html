@@ -13,7 +13,7 @@
     <header>
     </header>
     <main>
-        <h2>Shipping Information</h2>
+        <h2 class="page-header">Shipping Information</h2>
         <!-- Form for customers to enter shipping info for their order-->
         <form class="info-form" action="{% url 'create_order'%}">
             {% csrf_token %}
@@ -38,8 +38,8 @@
             </div>
 
             <div class="button-box">
-                <button type="button" class="back" onclick="history.back()">Cancel</button></a>
                 <button type="submit">Complete Order</button>
+                <button type="button" class="back" onclick="history.back()">Cancel</button></a>
             </div>
         </form> 
         <div class="order_total">
