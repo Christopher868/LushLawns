@@ -7,11 +7,12 @@ class Cart:
         self.session = request.session
 
         # Gets a current session key if there is one
-        cart = self.session.get('cart')
+        cart = self.session.get('cart', {})
 
         # Creates a cart session key if one does not already exist
-        if not cart:
+        if 'cart' not in request.session:
             cart = self.session['cart'] = {}
+            print(cart)
 
         # Makes sure cart is always available
         self.cart = cart
@@ -69,7 +70,7 @@ class Cart:
 
     
 
-    # Get total items in cart
+    # Finds number of items in cart
     def get_total_quantity(self):
         return sum(part['quantity'] for part in self.cart.values())
 
@@ -78,7 +79,7 @@ class Cart:
         self.session['cart'] = {}
         self.save()
 
-    # Gets the total items within the cart
+    # Returns all items in cart so they can be stored in a variable
     def get_cart_items(self):
         return self.cart
 

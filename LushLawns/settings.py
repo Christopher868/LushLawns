@@ -131,7 +131,12 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+CART_SESSION_ID = 'cart'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False

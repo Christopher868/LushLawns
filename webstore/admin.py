@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django.forms import CheckboxSelectMultiple
-from .models import Brand, Mower_Model, Part, Order, OrderItem, Info 
+from .models import Brand, Mower_Model, Part, Order, OrderItem, Info
 
 
 
@@ -34,6 +34,7 @@ class OrderModelAdmin(admin.ModelAdmin):
     search_fields = ['id']
     list_display = ('id', 'user', 'created_at', 'updated_at', 'status', 'total_price')
     inlines = [OrderItemInline, InfoInline]
+
 
 admin.site.register(Order, OrderModelAdmin)
 admin.site.register(Part, PartModelAdmin)

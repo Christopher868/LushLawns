@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
 from webstore.models import Part, Order, OrderItem
 from django.contrib import messages
+from webstore.forms import Shipping
 
 
 
@@ -37,7 +38,21 @@ def cart_delete(request, part_id):
 
 
 def checkout(request):
-    return render(request, 'checkout.html', {})
+    cart = Cart(request)
+    items = cart.get_cart_items()
+    price = cart.get_price(items)
+    if len(items) == 0:
+        messages.success(request, ("No items in cart checkout unsuccessful!"))
+        return redirect('cart_summary')
+    
+    if request.method == "POST":
+        form = Shipping(request.post)
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = Shipping()
+        return render(request, 'checkout.html', {'form':form, 'price':price})
 
 def cart_update(request):
     return render(request, 'cart.html', {})
@@ -47,9 +62,6 @@ def cart_update(request):
 def create_order(request):
     cart = Cart(request)
     items = cart.get_cart_items()
-    if len(items) == 0:
-        messages.success(request, ("No items in cart checkout unsuccessful!"))
-        return redirect('cart_summary')
     
     user = request.user if request.user.is_authenticated else None
     order = Order.objects.create(user=user, total_price=cart.get_price(items))

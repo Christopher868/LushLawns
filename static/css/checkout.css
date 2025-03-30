@@ -14,6 +14,8 @@ body {
 header,
 footer {
     background-color: #4f772d;
+    box-shadow: 1px 1px 10px black;
+    z-index: 999;
 }
 
 main {
@@ -23,4 +25,110 @@ main {
     text-align: center;
     flex-direction: column;
     color: #4f772d;
+    border-right: 1px solid #4f772d;
+    border-left: 1px solid #4f772d;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+main h2 {
+    font-size: 2rem;
+    margin-top: 25px;
+}
+
+.info-form label {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 4px 0;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.info-box option {
+    text-align: center;
+}
+
+.form-box select:focus {
+    outline: none;
+}
+
+
+.info-form {
+    width: 95%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0 50px 0;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.form-box input::placeholder {
+    text-align: center;
+    color: #4f772d;
+}
+
+.form-box small {
+    align-self: start;
+}
+
+.button-box button {
+    min-width: 150px;
+    padding: 6px 15px;
+    border-radius: 10px;
+    border: 1px solid #4f772d;
+    color: #4f772d;
+    font-weight: bold;
+
+    &:hover {
+        box-shadow: 0px 0px 3px black;
+    }
+
+    &:active {
+        box-shadow: inset 0px 0px 3px black;
+    }
+}
+
+.card-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 15px;
+}
+
+.card {
+    grid-column: span 2;
+}
+
+.address-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.street {
+    grid-column: span 2;
+}
+
+.order_total {
+    background-color: whitesmoke;
+    height: 100px;
+    width: 95%;
+    max-width: 800px;
+    margin-bottom: 50px;
+    border: 1px solid #4f772d;
 }

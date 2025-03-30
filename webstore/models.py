@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 # Model for brands of mowers available
 class Brand(models.Model):
     name = models.CharField(max_length=50)
@@ -51,7 +52,7 @@ class Order(models.Model):
         (option_3,'Completed'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(choices=choice, default=option_1, max_length=20)
@@ -61,16 +62,16 @@ class Order(models.Model):
         return f"Order {self.id} by {self.user.username if self.user else 'Guest'}"
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
-    part = models.ForeignKey(Part, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=1)
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE, editable=False)
+    part = models.ForeignKey(Part, on_delete=models.CASCADE, editable=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
+    quantity = models.PositiveIntegerField(default=1, editable=False)
 
     def get_total_price(self):
         return self.price * self.quantity
 
     def __str__(self):
-        return f"{self.quantity} x {self.part.part_name} in Order {self.order.id}"
+        return f"Part #{self.part.part_number} x {self.quantity}  in Order {self.order.id} | Total: ${self.get_total_price()}"
     
 class Info(models.Model):
 
@@ -94,15 +95,26 @@ class Info(models.Model):
         ('WV', 'West Virginia'), ('WI', 'Wisconsin'), ('WY', 'Wyoming'),
     )
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE , editable=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
+    phone_number = models.CharField(max_length=15)
     street = models.CharField(max_length=100)
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
     zipcode = models.CharField(max_length=9)
-    card =  models.DecimalField(max_digits=16, decimal_places=0)
-    security_code = models.DecimalField(max_digits=3, decimal_places=0)
-    expiration = models.CharField(max_length=5)
+    card =  models.DecimalField(max_digits=16, decimal_places=0, editable=False)
+    security_code = models.DecimalField(max_digits=3, decimal_places=0, editable=False)
+    expiration = models.CharField(max_length=5, editable=False)
 
     class Meta:
         verbose_name_plural="Customer Info"
+
+
+#Model to store session data
+class UserSession(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    session_data = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Session for {self.user.username}"

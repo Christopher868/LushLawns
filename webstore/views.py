@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Brand, Mower_Model, Part
+from .models import Brand, Mower_Model, Part, UserSession
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm
 from itertools import chain
+import json
+
+
 
 
 # View for homepage that displays all brands
@@ -48,6 +51,8 @@ def part_info(request, part_num):
     return render(request, 'webstore/part-info.html', {'part': part, 'mower_model': mower_model})
 
 
+
+
 # View for customer login page
 def login_user(request):
     if request.user.is_authenticated:
@@ -60,6 +65,18 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, ("Successful Login!"))
+                try:
+                    # Getting session information
+                    user_session = UserSession.objects.get(user=user)
+                    session_data = user_session.session_data
+                    session_data = json.loads(session_data)
+                #Check for session data then putting it into new session
+                    if session_data:
+                        for key, value in session_data:
+                            request.session[key] = value
+
+                except UserSession.DoesNotExist:
+                    pass
                 return redirect('home')
             else:
                 messages.success(request, ("Incorrect Username or Password!"))
@@ -70,6 +87,13 @@ def login_user(request):
 
 # View for logging out user
 def logout_user(request):
+    if request.user.is_authenticated:
+        session_data = json.dumps(list(request.session.items()))
+        #Saving user's session data in model so it can be accessed later
+        user_session, created = UserSession.objects.get_or_create(user=request.user)
+        user_session.session_data = session_data
+        user_session.save()
+        
     logout(request)
     messages.success(request, ("Successfully Logged Out!"))
     return redirect('home')
