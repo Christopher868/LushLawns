@@ -48,7 +48,10 @@ def checkout(request):
     if request.method == "POST":
         form = Shipping(request.post)
         if form.is_valid():
-            form.save()
+            request.session['form_data'] = form.cleaned_data
+            return redirect('create_order')
+        else:
+            return render(request, 'checkout.html', {'form':form})
 
     else:
         form = Shipping()
@@ -62,6 +65,11 @@ def cart_update(request):
 def create_order(request):
     cart = Cart(request)
     items = cart.get_cart_items()
+    form_data = request.session.get('form_data', {})
+
+    form = Shipping(initial=form_data)
+    print(form.initial.get('first_name'))
+    
     
     user = request.user if request.user.is_authenticated else None
     order = Order.objects.create(user=user, total_price=cart.get_price(items))

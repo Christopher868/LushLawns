@@ -54,10 +54,18 @@ main h2 {
     text-align: center;
 }
 
-.form-box select:focus {
-    outline: none;
-}
+.form-box select {
+    text-align: center;
 
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 4px black;
+    }
+
+    &:hover {
+        box-shadow: 0px 0px 4px black;
+    }
+}
 
 .info-form {
     width: 95%;
@@ -74,10 +82,24 @@ main h2 {
     text-align: center;
 }
 
-.form-box input::placeholder {
+.form-box input {
     text-align: center;
-    color: #4f772d;
+
+    &::placeholder {
+        text-align: center;
+        color: #4f772d;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 4px black;
+    }
+
+    &:hover {
+        box-shadow: 0px 0px 4px black;
+    }
 }
+
 
 .form-box small {
     align-self: start;
@@ -131,4 +153,24 @@ main h2 {
     max-width: 800px;
     margin-bottom: 50px;
     border: 1px solid #4f772d;
+}
+
+.name-box {
+    display: flex;
+    gap: 10px;
+}
+
+.first_name,
+.last_name {
+    flex: 1;
+}
+
+.contact-box {
+    display: flex;
+    gap: 10px;
+}
+
+.email,
+.phone {
+    flex: 1;
 }

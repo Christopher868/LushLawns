@@ -88,12 +88,13 @@ def login_user(request):
 # View for logging out user
 def logout_user(request):
     if request.user.is_authenticated:
+        # Getting current session data
         session_data = json.dumps(list(request.session.items()))
+
         #Saving user's session data in model so it can be accessed later
         user_session, created = UserSession.objects.get_or_create(user=request.user)
         user_session.session_data = session_data
         user_session.save()
-        
     logout(request)
     messages.success(request, ("Successfully Logged Out!"))
     return redirect('home')

@@ -33,9 +33,10 @@ class InfoInline(admin.TabularInline):
 class OrderModelAdmin(admin.ModelAdmin):
     search_fields = ['id']
     list_display = ('id', 'user', 'created_at', 'updated_at', 'status', 'total_price')
+    readonly_fields =('id',)
     inlines = [OrderItemInline, InfoInline]
 
-
+admin.site.register(Info)
 admin.site.register(Order, OrderModelAdmin)
 admin.site.register(Part, PartModelAdmin)
 admin.site.register(Brand, BrandModelAdmin)

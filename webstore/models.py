@@ -22,7 +22,7 @@ class Mower_Model(models.Model):
         return self.model_number
     
     class Meta:
-        verbose_name="Lawnmower Model"
+        verbose_name="Lawnmower"
 
 # Model for mower parts
 class Part(models.Model):
@@ -39,7 +39,7 @@ class Part(models.Model):
         return self.part_number
 
     class Meta:
-        verbose_name="Mower Part"
+        verbose_name="Part"
 
 class Order(models.Model):
     option_1 = 'Processing'
@@ -108,7 +108,7 @@ class Info(models.Model):
     expiration = models.CharField(max_length=5, editable=False)
 
     class Meta:
-        verbose_name_plural="Customer Info"
+        verbose_name_plural="Shipping Info"
 
 
 #Model to store session data

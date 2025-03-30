@@ -15,21 +15,24 @@
     <main>
         <h2>Shipping Information</h2>
         <!-- Form for customers to enter shipping info for their order-->
-        <form class="info-form" action="">
+        <form class="info-form" action="{% url 'create_order'%}">
             {% csrf_token %}
-                
-            <div class="form-box"><label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>{{ form.first_name }}</div>
-            <div class="form-box"><label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>{{ form.last_name }} </div>
-            <div class="form-box"><label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>{{ form.email }} </div>
-            <div class="form-box"><label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>{{ form.phone_number }} </div>
+            <div class="name-box">  
+                <div class="form-box first_name"><label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>{{ form.first_name }}</div>
+                <div class="form-box last_name"><label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>{{ form.last_name }} </div>
+            </div>
+            <div class="contact-box">
+                <div class="form-box email"><label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>{{ form.email }} </div>
+                <div class="form-box phone"><label for="{{ form.phone_number.id_for_label }}">Phone</label>{{ form.phone_number }} </div>
+            </div>
             <div class="address-box">
-                <div class="form-box street"><label for="{{ form.street.id_for_label }}">{{ form.street.label }}</label>{{ form.street }} </div>
+                <div class="form-box street"><label for="{{ form.street.id_for_label }}">Address</label>{{ form.street }} </div>
                 <div class="form-box">{{ form.state }} </div>
                 <div class="form-box">{{ form.zipcode }} </div>
             </div>  
 
             <div class="card-box">
-                <div class="form-box card"><label for="{{ form.card.id_for_label }}">{{ form.card.label }}</label>{{ form.card }} </div>
+                <div class="form-box card"><label for="{{ form.card.id_for_label }}">Card Info</label>{{ form.card }} </div>
                 <div class="form-box">{{ form.security_code }} </div>
                 <div class="form-box">{{ form.expiration }} <small>{{ form.expiration.help_text }}</small></div>
             </div>
