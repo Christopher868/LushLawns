@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
-from webstore.models import Part, Order, OrderItem
+from webstore.models import Part, Order, OrderItem, Info
 from django.contrib import messages
-from webstore.forms import Shipping
+from webstore.forms import InfoForm
 
 
 
@@ -29,14 +29,19 @@ def cart_add(request, part_id):
     return redirect(request.META.get('HTTP_REFERER', '/')) 
 
 
-# view that allows for customers to remove products from their cart
+# View that allows for customers to remove products from their cart
 def cart_delete(request, part_id):
-    cart = Cart(request)
-    part = get_object_or_404(Part, id=part_id)
-    cart.remove(part.id)
+
+    cart = Cart(request) # Getting cart
+
+    part = get_object_or_404(Part, id=part_id) # Getting part that is going to be removed
+
+    cart.remove(part.id) # Removes part from part
+
     return redirect('cart_summary')
 
 
+# View for the checkout page
 def checkout(request):
     cart = Cart(request)
     items = cart.get_cart_items()
@@ -44,36 +49,32 @@ def checkout(request):
     if len(items) == 0:
         messages.success(request, ("No items in cart checkout unsuccessful!"))
         return redirect('cart_summary')
+    saved_form = None
     
     if request.method == "POST":
-        form = Shipping(request.post)
+        form = InfoForm(request.POST)
         if form.is_valid():
-            request.session['form_data'] = form.cleaned_data
+            saved_form = form.save()
+            request.session['id'] = saved_form.id
             return redirect('create_order')
         else:
-            return render(request, 'checkout.html', {'form':form})
+            return render(request, 'checkout.html', {'form':form,'price':price})
 
     else:
-        form = Shipping()
+        form = InfoForm()
         return render(request, 'checkout.html', {'form':form, 'price':price})
-
-def cart_update(request):
-    return render(request, 'cart.html', {})
 
 
 # View that generates an order for your purchase
 def create_order(request):
     cart = Cart(request)
-    items = cart.get_cart_items()
-    form_data = request.session.get('form_data', {})
-
-    form = Shipping(initial=form_data)
-    print(form.initial.get('first_name'))
-    
-    
+    items = cart.get_cart_items()    
     user = request.user if request.user.is_authenticated else None
     order = Order.objects.create(user=user, total_price=cart.get_price(items))
-
+    shipping = Info.objects.get(id=request.session['id'])
+    shipping.order = order
+    shipping.save()
+    order_id = order.id
     for key in items:
         OrderItem.objects.create(
             order=order,
@@ -83,8 +84,9 @@ def create_order(request):
         )
 
     cart.clear()
-    return redirect('order_success')
+    return render(request, 'order_success.html', {'order_id':order_id})
 
 
+# View for order success page
 def order_success(request):
     return render(request, 'order_success.html', {})

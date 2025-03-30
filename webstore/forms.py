@@ -17,7 +17,7 @@ class CreateUserForm(UserCreationForm):
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
 
-class Shipping(forms.Form):
+class InfoForm(forms.ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name'}), help_text="Required. Must be 30 characters or less", max_length=30)
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name'}), help_text="Required. Must be 30 characters or less", max_length=30)
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email address'}), help_text="Required.")
@@ -29,8 +29,8 @@ class Shipping(forms.Form):
     security_code = forms.DecimalField(widget=forms.NumberInput(attrs={'placeholder': 'Security Code'}), help_text="Required.", max_digits=3)
     expiration = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Card expiration date'}), help_text="Format DD/YY", max_length=5)
 
-    class meta:
-        model= Info
+    class Meta:
+        model = Info
         fields = [
         'first_name', 'last_name', 'email',
         'phone_number', 'street', 'state',

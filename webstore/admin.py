@@ -4,10 +4,6 @@ from django.forms import CheckboxSelectMultiple
 from .models import Brand, Mower_Model, Part, Order, OrderItem, Info
 
 
-
-
-
-
 # Class that turns part manytomany into checkboxes
 class PartModelAdmin(admin.ModelAdmin):
     formfield_overrides = {
@@ -25,18 +21,20 @@ class Mower_modelModelAdmin(admin.ModelAdmin):
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0
+    show_change_link = True
 
 class InfoInline(admin.TabularInline):
     model = Info
     extra = 0
+    show_change_link = True
+    fields = ('id','first_name', 'last_name', 'street', 'state', 'zipcode')
 
 class OrderModelAdmin(admin.ModelAdmin):
     search_fields = ['id']
     list_display = ('id', 'user', 'created_at', 'updated_at', 'status', 'total_price')
     readonly_fields =('id',)
     inlines = [OrderItemInline, InfoInline]
-
-admin.site.register(Info)
+    
 admin.site.register(Order, OrderModelAdmin)
 admin.site.register(Part, PartModelAdmin)
 admin.site.register(Brand, BrandModelAdmin)

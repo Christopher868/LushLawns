@@ -13,9 +13,24 @@
     <header>
     </header>
     <main>
+        <!--Page Header-->
         <h2 class="page-header">Shipping Information</h2>
+
+        <!--Displays messages for user-->
+    {% with first_error_displayed=False %}
+        {% for field in form %}
+            {% if field.errors and not first_error_displayed %}
+                <div class="alert" role="alert">
+                    <h3> {{ field.errors.0 }}</h3>
+                </div>
+                {% with first_error_displayed=True %} 
+                {% endwith %}
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
+
         <!-- Form for customers to enter shipping info for their order-->
-        <form class="info-form" action="{% url 'create_order'%}">
+        <form class="info-form" action="{% url 'checkout'%}" method="POST">
             {% csrf_token %}
             <div class="name-box">  
                 <div class="form-box first_name"><label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>{{ form.first_name }}</div>
@@ -39,7 +54,7 @@
 
             <div class="button-box">
                 <button type="submit">Complete Order</button>
-                <button type="button" class="back" onclick="history.back()">Cancel</button></a>
+                <a href="{% url 'cart_summary' %}"><button type="button" class="back">Cancel</button></a>
             </div>
         </form> 
         <div class="order_total">

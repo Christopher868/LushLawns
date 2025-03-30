@@ -32,6 +32,23 @@ main {
     margin: 0 auto;
 }
 
+/* message stylings */
+.alert {
+    margin-bottom: 0;
+    text-align: center;
+    min-height: 50px;
+    background-color: #FFBE0B80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert h3 {
+    font-weight: bolder;
+    color: black;
+    font-size: 1.5rem;
+}
+
 .page-header {
     font-size: 2rem;
     margin-top: 25px;

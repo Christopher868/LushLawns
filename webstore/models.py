@@ -45,11 +45,15 @@ class Order(models.Model):
     option_1 = 'Processing'
     option_2 = 'Shipped'
     option_3 = 'Completed'
+    option_4 = 'Failed'
+    option_5 = 'Cancelled'
     
     choice =[
         (option_1,'Processing'),
         (option_2,'Shipped'),
         (option_3,'Completed'),
+        (option_4,'Failed'),
+        (option_5,'Cancelled'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, editable=False)
@@ -59,13 +63,13 @@ class Order(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
-        return f"Order {self.id} by {self.user.username if self.user else 'Guest'}"
+        return f"Order {self.id} by User: {self.user.username if self.user else 'Guest'}"
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE, editable=False)
-    part = models.ForeignKey(Part, on_delete=models.CASCADE, editable=False)
-    price = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
-    quantity = models.PositiveIntegerField(default=1, editable=False)
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=1)
 
     def get_total_price(self):
         return self.price * self.quantity
@@ -95,7 +99,7 @@ class Info(models.Model):
         ('WV', 'West Virginia'), ('WI', 'Wisconsin'), ('WY', 'Wyoming'),
     )
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE , editable=False)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE , editable=False, blank=True, null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
@@ -103,12 +107,20 @@ class Info(models.Model):
     street = models.CharField(max_length=100)
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
     zipcode = models.CharField(max_length=9)
-    card =  models.DecimalField(max_digits=16, decimal_places=0, editable=False)
-    security_code = models.DecimalField(max_digits=3, decimal_places=0, editable=False)
-    expiration = models.CharField(max_length=5, editable=False)
+    card =  models.DecimalField(max_digits=16, decimal_places=0 )
+    security_code = models.DecimalField(max_digits=3, decimal_places=0)
+    expiration = models.CharField(max_length=5)
 
     class Meta:
         verbose_name_plural="Shipping Info"
+
+    def __str__(self):
+        if self.order:
+           return str(self.order)
+        else:
+            return f'{self.first_name} {self.last_name}'
+
+        
 
 
 #Model to store session data
