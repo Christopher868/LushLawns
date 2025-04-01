@@ -5,6 +5,7 @@
 <!--Page specific stylings-->
 <head>
     <link rel="stylesheet" href="{% static 'css/all-parts.css'%}">
+    <script src="{% static 'js/all_parts_filter.js'%}"></script>
 </head>
 
 <!--Top of All Parts page including back button and search bar-->
@@ -12,10 +13,7 @@
     <p><a href="{% url 'home' %}">&larr; Back</a></p>
     <form class="parts-search search-bar" action="">
         <div class="input-container">
-            <input type="search" name="search" id="search" placeholder="Search Results by Part Number">
-            <div class="label-container">
-                <label for="search"><button type="submit"><span class="material-symbols-outlined">search</span></button></label>
-            </div>
+            <input type="text" name="search" id="filter-parts" placeholder="Filter Results by Part Number" onkeyup="filterPartsResults()">
         </div>
     </form>
 </section>
@@ -36,7 +34,7 @@
             {% endif %}
             <div class="part-info">
                 <p><span class="part-info-header">Part Name:</span><br>{{ parts.part_name }}</p>
-                <p><span class="part-info-header">Part Number:</span><br>#{{ parts.part_number }} </p>
+                <p><span class="part-info-header">Part Number:</span><br>#<span class="part_number">{{ parts.part_number }}</span> </p>
                 <p><span class="part-info-header">Price:</span><br> ${{ parts.price }}</p>
                 <a href="{% url 'part-info' parts.part_number %}"><button>View Part</button></a>
             </div>    

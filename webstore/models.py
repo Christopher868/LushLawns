@@ -41,6 +41,7 @@ class Part(models.Model):
     class Meta:
         verbose_name="Part"
 
+# Model to store orders
 class Order(models.Model):
     option_1 = 'Processing'
     option_2 = 'Shipped'
@@ -65,6 +66,7 @@ class Order(models.Model):
     def __str__(self):
         return f"Order {self.id} by User: {self.user.username if self.user else 'Guest'}"
 
+#Model to store items in cart
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     part = models.ForeignKey(Part, on_delete=models.CASCADE)
@@ -76,9 +78,11 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"Part #{self.part.part_number} x {self.quantity}  in Order {self.order.id} | Total: ${self.get_total_price()}"
-    
+
+# Model to store shipping information  
 class Info(models.Model):
 
+    # choices for state in form
     STATE_CHOICES = (
         ('AL', 'Alabama'), ('AK', 'Alaska'), ('AZ', 'Arizona'),
         ('AR', 'Arkansas'), ('CA', 'California'), ('CO', 'Colorado'),
@@ -99,7 +103,7 @@ class Info(models.Model):
         ('WV', 'West Virginia'), ('WI', 'Wisconsin'), ('WY', 'Wyoming'),
     )
 
-    order = models.ForeignKey(Order, on_delete=models.CASCADE , editable=False, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)

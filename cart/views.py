@@ -72,6 +72,7 @@ def create_order(request):
     user = request.user if request.user.is_authenticated else None
     order = Order.objects.create(user=user, total_price=cart.get_price(items))
     shipping = Info.objects.get(id=request.session['id'])
+    del request.session['id']
     shipping.order = order
     shipping.save()
     order_id = order.id

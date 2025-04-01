@@ -34,7 +34,17 @@ class OrderModelAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'created_at', 'updated_at', 'status', 'total_price')
     readonly_fields =('id',)
     inlines = [OrderItemInline, InfoInline]
-    
+
+class OrderItemModelAdmin(admin.ModelAdmin):
+    def get_model_perms(self, request):
+        return {}
+
+class InfoModelAdmin(admin.ModelAdmin):
+    def get_model_perms(self, request):
+        return {}
+
+admin.site.register(OrderItem, OrderItemModelAdmin)
+admin.site.register(Info, InfoModelAdmin)  
 admin.site.register(Order, OrderModelAdmin)
 admin.site.register(Part, PartModelAdmin)
 admin.site.register(Brand, BrandModelAdmin)
