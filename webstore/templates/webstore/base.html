@@ -33,20 +33,6 @@
             </form>
             
             <div class="header-top-links">
-                {% if user.is_authenticated %}
-                    <div class="login-user account-dropdown">
-                        <button class="dropdown-button account" id="account-dropdown-button"><h2>Account</h2></button>
-                        <button class="dropdown-button menu" id="menu-dropdown-button"><span class="material-symbols-outlined menu-symbol">menu</span></button>
-                        <ul class="dropdown-list" Id="dropdown-list-id">
-                            <li class="dropdown-list-item"><a href="#">Profile</a></li>
-                            <li class="dropdown-list-item"><a href="#">Orders</a></li>
-                            <li class="dropdown-list-item"><a href="{% url 'logout' %}">Logout</a></li>
-                        </ul>
-                    </div>
-                {% else %}
-                    <div class="login-user logout-user"><a href="{% url 'login' %}"><h2>Log In</h2></a></div>
-                {% endif %}
-
                 <div class="shopping-cart">
                     <a href="{% url 'cart_summary' %}">
                         <span class="material-symbols-outlined"><span class="cart">shopping_cart</span>  
@@ -56,7 +42,19 @@
                         </span>
                     </a>
                 </div>
-                
+            {% if user.is_authenticated %}
+                    <div class="login-user account-dropdown">
+                        <button class="dropdown-button account" id="account-dropdown-button"><h2>Account</h2></button>
+                        <button class="dropdown-button menu" id="menu-dropdown-button"><span class="material-symbols-outlined menu-symbol">menu</span></button>
+                        <ul class="dropdown-list" Id="dropdown-list-id">
+                            <a href="#"><li class="dropdown-list-item">Profile</li></a>
+                            <a href="#"><li class="dropdown-list-item">Orders</li></a>
+                            <a href="{% url 'logout' %}"><li class="dropdown-list-item">Logout</li></a>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="login-user logout-user"><a href="{% url 'login' %}"><h2>Login</h2></a></div>
+                {% endif %}
             </div>    
         </div>
         
