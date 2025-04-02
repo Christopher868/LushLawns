@@ -20,7 +20,7 @@
     <sidebar class="cost">
         <h2 class="cost-header-text">Your Order<br>Total</h2>
         <p>Subtotal: ${{ sub_total_price|floatformat:2 }}</p>
-        <p>Shipping: $14.99</p>
+        <p>Shipping: ${% if sub_total_price == 0 %}0 {% else %}14.99{% endif %}  </p>
         <p>Taxes: ${{ tax|floatformat:2 }}</p>
         <h2 class="cost-header-text">Total Cost</h2>
         <p>${{ total|floatformat:2 }}</p>
