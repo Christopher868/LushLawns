@@ -44,6 +44,8 @@ body {
     color: white;
     box-shadow: 0px 0px 2px black;
     z-index: 999;
+    position: sticky;
+    top: 0px;
 
 }
 
@@ -270,12 +272,14 @@ body {
 
 .dropdown-list {
     list-style: none;
-    position: absolute;
+    position: fixed;
     top: 100px;
     background-color: whitesmoke;
     right: 0;
     display: none;
-    overflow: hidden;
+    height: calc(100vh - 100px);
+    z-index: 999;
+    box-shadow: 1px 1px 4px black;
 }
 
 .dropdown-list a {
@@ -397,9 +401,6 @@ body {
         display: flex;
     }
 
-    .login-user a {
-        font-size: 0.9rem;
-    }
 }
 
 @media(max-width:675px) {
@@ -421,7 +422,10 @@ body {
         justify-content: end;
         margin-right: 50px;
     }
+}
 
-
-
+@media(max-width:400px) {
+    .header-nav {
+        font-size: .8rem
+    }
 }

@@ -134,3 +134,17 @@ def search(request):
     else:
         return render(request, 'webstore/search.html', {})
         
+
+#View for viewing all user orders
+def orders(request):
+    return render(request, 'webstore/orders.html', {})
+
+
+#View for viewing specific order details
+def order_info(request):
+    return render(request, 'webstore/order-info.html', {})
+
+
+#View that allows user to change profile information
+def profile(request):
+    return render(request, 'webstore/profile.html', {})

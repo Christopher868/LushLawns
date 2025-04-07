@@ -37,7 +37,7 @@
     align-items: center;
     box-shadow: 1px 1px 5px black;
     border: 1px solid rgba(75, 77, 78, .5);
-    z-index: 999;
+    z-index: 900;
     margin-bottom: 50px;
     width: 100%;
     color: white;
@@ -136,7 +136,7 @@
     align-items: center;
     box-shadow: 1px 1px 5px black;
     border: 1px solid rgba(75, 77, 78, .5);
-    z-index: 999;
+    z-index: 900;
     margin-top: 80px;
     width: 100%;
     color: white;

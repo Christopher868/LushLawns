@@ -47,8 +47,8 @@
                         <button class="dropdown-button account" id="account-dropdown-button"><h2>Account</h2></button>
                         <button class="dropdown-button menu" id="menu-dropdown-button"><span class="material-symbols-outlined menu-symbol">menu</span></button>
                         <ul class="dropdown-list" Id="dropdown-list-id">
-                            <a href="#"><li class="dropdown-list-item">Profile</li></a>
-                            <a href="#"><li class="dropdown-list-item">Orders</li></a>
+                            <a href="{% url 'profile' %}"><li class="dropdown-list-item">Profile</li></a>
+                            <a href="{% url 'orders' %}"><li class="dropdown-list-item">Orders</li></a>
                             <a href="{% url 'logout' %}"><li class="dropdown-list-item">Logout</li></a>
                         </ul>
                     </div>
