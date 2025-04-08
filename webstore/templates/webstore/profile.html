@@ -1,2 +1,26 @@
 {% extends "webstore/base.html" %}
 {% load static %}
+
+{% block content %}
+<!--Page specific stylings-->
+<head>
+    <link rel="stylesheet" href="{% static 'css/profile.css'%}">
+</head>
+
+
+<section class="profile-info-container">
+    <h2 class="edit-header headers">Edit Profile</h2>
+    <form class="form profileForm" action="{% url 'profile' %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field.label_tag}}
+        {{ field }}
+        {% endfor %}
+        <div class="button-box">
+            <button type="submit">Save Changes</button>
+            <a href="{% url 'change-password'%}"><button type="button">Change Password</button></a>
+            <a href="{% url 'home'%}"><button type="button">Back</button></a>
+        </div>    
+    </form>
+</section>
+{% endblock content %}

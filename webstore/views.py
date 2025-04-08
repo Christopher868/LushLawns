@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Brand, Mower_Model, Part, UserSession
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateUserForm
+from .forms import CreateUserForm, EditUser
+from django.contrib.auth.models import User
 from itertools import chain
 import json
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -147,4 +150,34 @@ def order_info(request):
 
 #View that allows user to change profile information
 def profile(request):
-    return render(request, 'webstore/profile.html', {})
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = EditUser(request.POST, instance=request.user)
+            if form.is_valid(): 
+                form.save() 
+                return redirect('profile')
+            else:
+                return render(request, 'webstore/profile.html', {'form': form})
+        else:
+            form = EditUser(instance=request.user)
+    else:
+        return redirect('login')
+    
+    return render(request, 'webstore/profile.html', {'form': form})
+
+#View for page that allows user to change password 
+def change_password(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PasswordChangeForm(data=request.POST, user=request.user)
+            if form.is_valid(): 
+                user = form.save() 
+                update_session_auth_hash(request, user)
+                return redirect('profile')
+            else:
+                return render(request, 'webstore/change-password.html', {'form': form})
+        else:
+            form = PasswordChangeForm(user=request.user)
+    else:
+        return redirect('login')
+    return render(request, 'webstore/change-password.html', {'form':form})

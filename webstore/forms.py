@@ -36,3 +36,9 @@ class InfoForm(forms.ModelForm):
         'phone_number', 'street', 'state',
         'zipcode', 'card', 'security_code', 'expiration'
     ]
+        
+
+class EditUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email']
