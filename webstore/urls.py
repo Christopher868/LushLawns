@@ -13,7 +13,7 @@ urlpatterns = [
     path('part/<str:part_num>', views.part_info, name='part-info'),
     path('search/', views.search, name='search'),
     path('orders/', views.orders, name='orders'),
-    path('order-info/', views.order_info, name='order_info'),
+    path('order-info/<int:order_id>', views.order_info, name='order_info'),
     path('profile/', views.profile, name='profile'),
     path('change-password/', views.change_password, name='change-password'),
 

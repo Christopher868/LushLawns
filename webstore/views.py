@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Brand, Mower_Model, Part, UserSession
+from .models import Brand, Mower_Model, Part, UserSession, Order, OrderItem
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm, EditUser
@@ -140,12 +140,14 @@ def search(request):
 
 #View for viewing all user orders
 def orders(request):
-    return render(request, 'webstore/orders.html', {})
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'webstore/orders.html', {'orders':orders})
 
 
 #View for viewing specific order details
-def order_info(request):
-    return render(request, 'webstore/order-info.html', {})
+def order_info(request, order_id):
+    orderItems = OrderItem.objects.filter(order=order_id)
+    return render(request, 'webstore/order-info.html', {'orderItems': orderItems})
 
 
 #View that allows user to change profile information

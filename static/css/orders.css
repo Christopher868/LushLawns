@@ -1,0 +1,96 @@
+.base-main {
+    width: 100%;
+}
+
+.back {
+    margin: 20px 0 0 3%;
+}
+
+.back button {
+    padding: 4px 15px;
+    color: black;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    font-size: 1.1rem;
+    border-radius: 10px;
+
+    &:hover {
+        box-shadow: 0px 0px 3px black;
+    }
+
+    &:active {
+        box-shadow: inset 0px 0px 3px black;
+    }
+}
+
+.orders_header {
+    text-align: center;
+    color: #4f772d;
+    font-weight: bolder;
+    margin: 0 0 50px 0;
+    font-size: 1.8rem;
+}
+
+
+
+.order-link {
+    display: flex;
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        box-shadow: 0px 0px 3px black;
+    }
+
+}
+
+.order {
+    border-bottom: 1px solid black;
+}
+
+.order:first-of-type {
+    border-top: 1px solid black;
+}
+
+.order p {
+    flex: 1;
+    text-align: center;
+}
+
+.order span {
+    color: #4f772d;
+    font-weight: bold;
+}
+
+.order-link {
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+}
+
+.order:nth-child(even) {
+    background-color: whitesmoke;
+}
+
+
+@media(max-width:600px) {
+    .order span {
+        font-size: 0.9rem;
+    }
+
+    .order p {
+        font-size: 0.7rem;
+    }
+}
+
+@media(max-width:400px) {
+    .order span {
+        font-size: 0.8rem;
+    }
+
+    .order p {
+        font-size: 0.6rem;
+    }
+}

@@ -7,5 +7,18 @@
     <link rel="stylesheet" href="{% static 'css/order-info.css'%}">
 </head>
 
+<!--Header for page and back button-->
+<p class="back"><button type="button" onclick="history.back()">&larr; Back</button></p>
+<h2 class="order_items_header">Items in Order</h2>
+
+<!--Loop to items in user's selected order-->
+{% for orderItem in orderItems %}
+<div class="orderItem">
+    <p><span>Part Number: </span><br><a class="part_link" href="{% url 'part-info' orderItem.part %}">#{{orderItem.part}}</a></p>
+    <p><span>Quantity: </span><br>{{orderItem.quantity}}</p>
+    <p><span>Price: </span><br>${{orderItem.price }}<small> each</small></p>
+</div>
+
+{% endfor %}
 {% endblock content %}
 

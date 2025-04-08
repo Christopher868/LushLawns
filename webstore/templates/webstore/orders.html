@@ -7,4 +7,19 @@
     <link rel="stylesheet" href="{% static 'css/orders.css'%}">
 </head>
 
+<!--Header for page and back button-->
+<p class="back"><button type="button" onclick="history.back()">&larr; Back</button></p>
+<h2 class="orders_header">Orders</h2>
+
+<!--Loop to display user's orders-->
+{% for order in orders %}
+    <div class="order">
+        <a href="{% url 'order_info' order.pk %}" class="order-link">
+            <p><span>Date Ordered: </span><br>{{ order.created_at }}</p>
+            <p><span>Order Status: </span><br>{{ order.status}}</p>
+            <p><span>Order Total: </span><br>${{ order.total_price }}</p>
+        </a>
+    </div>
+{% endfor %}
+
 {% endblock content %}
