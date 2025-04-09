@@ -84,6 +84,16 @@ def create_order(request):
             quantity = items[key]['quantity']
         )
 
+    # Updates inventory of part
+    orderItems = OrderItem.objects.filter(order=order.id)
+    for item in orderItems:
+        part = Part.objects.get(part_number=item.part)
+        if part.quantity == 0:
+            pass
+        else:
+            part.quantity = part.quantity - item.quantity
+            part.save()
+
     cart.clear()
     return render(request, 'order_success.html', {'order_id':order_id})
 

@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="{% static 'css/part-info.css'%}">
 </head>
 
-<!--Back button -->
+<!--Back button-->
 <p class="back-button"><a href="#" onclick="history.back()">&larr; Back</a></p>
 
 
-<!--Section that displays part info and image>-->
+<!--Section that displays part info and image-->
 <section class="part-page-info">
 
     <div class="img-container">
+        {% if part.image %}
+        <img src="{{ part.image.url }}" alt="Picture for part {{ part.quantity }}">
+        {% else %}
         <img src="{% static 'images/Part-Img-Alt.png'%}" alt="Picture for part {{ part.quantity }}">
+        {% endif %}
     </div>
     
     <div class="info-container">
