@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django import forms
 from .models import Info
 
@@ -18,15 +19,15 @@ class CreateUserForm(UserCreationForm):
 
 
 class InfoForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name'}), help_text="Required. Must be 30 characters or less", max_length=30)
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name'}), help_text="Required. Must be 30 characters or less", max_length=30)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name'}), help_text="Must be 30 characters or less", max_length=30)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name'}), help_text="Must be 30 characters or less", max_length=30)
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email address'}), help_text="Required.")
     phone_number = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Phone number'}), help_text="Required.", max_length=15)
     street = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Street address'}), help_text="Required.", max_length=50)
     state = forms.ChoiceField(choices=[('', 'Select a state')] + list(Info.STATE_CHOICES), widget=forms.Select(attrs={'class': 'form-control'}))
     zipcode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Zipcode'}), help_text="Required.", max_length=9)
-    card = forms.DecimalField(widget=forms.NumberInput(attrs={'placeholder': 'Card Number'}), help_text="Required.", max_digits=16)
-    security_code = forms.DecimalField(widget=forms.NumberInput(attrs={'placeholder': 'Security Code'}), help_text="Required.", max_digits=3)
+    card = forms.DecimalField(widget=forms.NumberInput(attrs={'placeholder': 'Card Number'}), help_text="16 Digits Max", max_digits=16)
+    security_code = forms.DecimalField(widget=forms.NumberInput(attrs={'placeholder': 'Security Code'}), help_text="3 Digits Max", max_digits=3)
     expiration = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Card expiration date'}), help_text="Format DD/YY", max_length=5)
 
     class Meta:

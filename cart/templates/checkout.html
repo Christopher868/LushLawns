@@ -47,8 +47,8 @@
             </div>  
 
             <div class="card-box">
-                <div class="form-box card"><label for="{{ form.card.id_for_label }}">Card Info</label>{{ form.card }} </div>
-                <div class="form-box">{{ form.security_code }} </div>
+                <div class="form-box card"><label for="{{ form.card.id_for_label }}">Card Info</label>{{ form.card }} <small>{{ form.card.help_text }}</small> </div>
+                <div class="form-box">{{ form.security_code }} <small>{{ form.security_code.help_text }}</small> </div>
                 <div class="form-box">{{ form.expiration }} <small>{{ form.expiration.help_text }}</small></div>
             </div>
 
